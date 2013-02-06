@@ -4,7 +4,7 @@
   <title><![CDATA[Kekedie's Blog]]></title>
   <link href="http://kekedie.github.com/atom.xml" rel="self"/>
   <link href="http://kekedie.github.com/"/>
-  <updated>2013-02-06T23:58:53+09:00</updated>
+  <updated>2013-02-07T01:11:38+09:00</updated>
   <id>http://kekedie.github.com/</id>
   <author>
     <name><![CDATA[Han Sangwon]]></name>
@@ -12,5 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello Gradle!]]></title>
+    <link href="http://kekedie.github.com/blog/2013/02/07/hello-gradle/"/>
+    <updated>2013-02-07T00:15:00+09:00</updated>
+    <id>http://kekedie.github.com/blog/2013/02/07/hello-gradle</id>
+    <content type="html"><![CDATA[<p>최근 프로젝트에서 사용중이였던 <strong>Maven</strong>을 <strong>Gradle</strong>로 이전하고 있는 중이다.
+<a href="http://www.gradle.org">Gradle사이트</a>에서 제공하고 있는 <a href="http://www.gradle.org/docs/current/userguide/userguide.html">Gradle User Guide</a>를 보면서 테스트 중인데 <strong>Maven</strong>에서 프로젝트 의존성 문제로 골머리를 썪혔던 부분이 <code>settings.gradle</code>에 서브프로젝트 설정 한줄로 단번에 해결!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// 하위 디렉토리는 &#39;:&#39; 로 구분.</span>
+</span><span class='line'><span class="n">include</span> <span class="s2">&quot;서브프로젝트1&quot;</span><span class="o">,</span> <span class="s2">&quot;서브프로젝트2&quot;</span><span class="o">,</span> <span class="s2">&quot;서브프로젝트3&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Gradle</strong>에서 <code>multi-project build</code> 설정은 정말 쉽다.
+물론 각 서브프로젝트들도 <code>build.gradle</code>이 필요하지만 <strong>Maven</strong>에서 <code>xml</code>로 기술하던거랑은 비교할 수도 없이 간단하다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// 서브프로젝트1에서 서브프로젝트2와 의존관계가 있을 경우.</span>
+</span><span class='line'><span class="c1">// &#39;:&#39;는 루트 프로젝트 디렉토리 인듯.</span>
+</span><span class='line'><span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:서브프로젝트2&#39;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>서브프로젝트를 테스트 하거나 빌드를 할때도 루트프로젝트를 지정하지 않아도 알아서 <code>settings.gradle</code>을 찾아서 의존관계를 해결해 준다.</p>
+
+<p>한마디로 빌드계에 <strong>강남스타일</strong>이라 할 수 있겠다 :)</p>
+]]></content>
+  </entry>
   
 </feed>
