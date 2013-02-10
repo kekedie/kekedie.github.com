@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Development | Kekedie's Blog]]></title>
+  <link href="http://kekedie.github.com/blog/categories/development/atom.xml" rel="self"/>
+  <link href="http://kekedie.github.com/"/>
+  <updated>2013-02-10T21:32:42+09:00</updated>
+  <id>http://kekedie.github.com/</id>
+  <author>
+    <name><![CDATA[Han Sangwon]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[iTerm2 Solarized 테마설정]]></title>
+    <link href="http://kekedie.github.com/blog/2013/02/10/iterm2-solarized/"/>
+    <updated>2013-02-10T19:08:00+09:00</updated>
+    <id>http://kekedie.github.com/blog/2013/02/10/iterm2-solarized</id>
+    <content type="html"><![CDATA[<p>보기 좋은 떡이 먹기도 좋다고 요즘 각종 툴에 테마 설정을 이것저것 찾아 보던 중에 발견한 <strong><a href="http://ethanschoonover.com/solarized">Solarized</a></strong>.
+<code>
+git clone git://github.com/altercation/solarized.git
+tree solarized/iterm2-colors-solarized
+solarized/iterm2-colors-solarized
+├── README.md
+├── Solarized\ Dark.itermcolors
+└── Solarized\ Light.itermcolors
+</code>
+<strong><a href="git%20clone%20git://github.com/altercation/solarized.git">github</a></strong>저장소에서 <code>Solarized</code>테마를 다운로드 받고 <strong>iTerm2 > Preferences > Profiles > Colors > Load Presets... > Import...</strong> 에서 위에서 클론 받아온 파일을 임포트 해주면 끝.</p>
+
+<p>개인적으로는 바탕화면이 어두운걸 선호해서 <code>Solarized Dark.itermcolors</code>를 임포트해서 사용중이다.
+레포지토리에 보면 기타 다른 툴에서도 같은 테마를 적용할 수 있게 임포트 파일들이 준비 되어 있다. 아쉽게도 <a href="http://www.eclipse.org">Eclipse</a>는 빠졌는데 (intelliJ는 있는데...) <a href="http://eclipsecolorthemes.org">Eclipse Color Theme</a>에서 <a href="http://eclipsecolorthemes.org/?list=all&amp;q=solarized">검색</a>해보면 괜찮은 자료가 많이 올라와 있다.</p>
+]]></content>
+  </entry>
+  
+</feed>

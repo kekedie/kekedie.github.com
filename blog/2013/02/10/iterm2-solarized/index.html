@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Kekedie's Blog</title>
+  <title>iTerm2 Solarized 테마설정 - Kekedie's Blog</title>
   <meta name="author" content="Han Sangwon">
 
   
@@ -25,7 +25,7 @@ tree solarized/iterm2- &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kekedie.github.com/">
+  <link rel="canonical" href="http://kekedie.github.com/blog/2013/02/10/iterm2-solarized/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -69,15 +69,12 @@ tree solarized/iterm2- &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/02/10/iterm2-solarized/">iTerm2 Solarized 테마설정</a></h1>
+      <h1 class="entry-title">iTerm2 Solarized 테마설정</h1>
     
     
       <p class="meta">
@@ -100,7 +97,7 @@ tree solarized/iterm2- &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>보기 좋은 떡이 먹기도 좋다고 요즘 각종 툴에 테마 설정을 이것저것 찾아 보던 중에 발견한 <strong><a href="http://ethanschoonover.com/solarized">Solarized</a></strong>.</p>
+<div class="entry-content"><p>보기 좋은 떡이 먹기도 좋다고 요즘 각종 툴에 테마 설정을 이것저것 찾아 보던 중에 발견한 <strong><a href="http://ethanschoonover.com/solarized">Solarized</a></strong>.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -121,22 +118,16 @@ tree solarized/iterm2- &hellip;">
 <p>개인적으로는 바탕화면이 어두운걸 선호해서 <code>Solarized Dark.itermcolors</code>를 임포트해서 사용중이다.
 레포지토리에 보면 기타 다른 툴에서도 같은 테마를 적용할 수 있게 임포트 파일들이 준비 되어 있다. 아쉽게도 <a href="http://www.eclipse.org">Eclipse</a>는 빠졌는데 (intelliJ는 있는데&#8230;) <a href="http://eclipsecolorthemes.org">Eclipse Color Theme</a>에서 <a href="http://eclipsecolorthemes.org/?list=all&amp;q=solarized">검색</a>해보면 괜찮은 자료가 많이 올라와 있다.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/07/hello-gradle/">Hello Gradle!</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Han Sangwon</span></span>
+
+      
 
 
 
@@ -148,51 +139,38 @@ tree solarized/iterm2- &hellip;">
   
 
 
-<time datetime="2013-02-07T00:15:00+09:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-02-10T19:08:00+09:00" pubdate data-updated="true">Feb 10<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development/'>Development</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>최근 프로젝트에서 사용중이였던 <strong>Maven</strong>을 <strong>Gradle</strong>로 이전하고 있는 중이다.
-<a href="http://www.gradle.org">Gradle사이트</a>에서 제공하고 있는 <a href="http://www.gradle.org/docs/current/userguide/userguide.html">Gradle User Guide</a>를 보면서 테스트 중인데 <strong>Maven</strong>에서 프로젝트 의존성 문제로 골머리를 썪혔던 부분이 <code>settings.gradle</code>에 서브프로젝트 설정 한줄로 단번에 해결!</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// 하위 디렉토리는 &#39;:&#39; 로 구분.</span>
-</span><span class='line'><span class="n">include</span> <span class="s2">&quot;서브프로젝트1&quot;</span><span class="o">,</span> <span class="s2">&quot;서브프로젝트2&quot;</span><span class="o">,</span> <span class="s2">&quot;서브프로젝트3&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>Gradle</strong>에서 <code>multi-project build</code> 설정은 정말 쉽다.
-물론 각 서브프로젝트들도 <code>build.gradle</code>이 필요하지만 <strong>Maven</strong>에서 <code>xml</code>로 기술하던거랑은 비교할 수도 없이 간단하다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// 서브프로젝트1에서 서브프로젝트2와 의존관계가 있을 경우.</span>
-</span><span class='line'><span class="c1">// &#39;:&#39;는 루트 프로젝트 디렉토리 인듯.</span>
-</span><span class='line'><span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:서브프로젝트2&#39;</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>서브프로젝트를 테스트 하거나 빌드를 할때도 루트프로젝트를 지정하지 않아도 알아서 <code>settings.gradle</code>을 찾아서 의존관계를 해결해 준다.</p>
-
-<p>한마디로 빌드계에 <strong>강남스타일</strong>이라 할 수 있겠다 :)</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kekedie.github.com/blog/2013/02/10/iterm2-solarized/" data-via="" data-counturl="http://kekedie.github.com/blog/2013/02/10/iterm2-solarized/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/07/hello-gradle/" title="Previous Post: Hello Gradle!">&laquo; Hello Gradle!</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -217,6 +195,7 @@ tree solarized/iterm2- &hellip;">
 
   
 </aside>
+
 
     </div>
   </div>

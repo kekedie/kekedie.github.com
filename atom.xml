@@ -4,7 +4,7 @@
   <title><![CDATA[Kekedie's Blog]]></title>
   <link href="http://kekedie.github.com/atom.xml" rel="self"/>
   <link href="http://kekedie.github.com/"/>
-  <updated>2013-02-07T01:11:38+09:00</updated>
+  <updated>2013-02-10T21:32:42+09:00</updated>
   <id>http://kekedie.github.com/</id>
   <author>
     <name><![CDATA[Han Sangwon]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iTerm2 Solarized 테마설정]]></title>
+    <link href="http://kekedie.github.com/blog/2013/02/10/iterm2-solarized/"/>
+    <updated>2013-02-10T19:08:00+09:00</updated>
+    <id>http://kekedie.github.com/blog/2013/02/10/iterm2-solarized</id>
+    <content type="html"><![CDATA[<p>보기 좋은 떡이 먹기도 좋다고 요즘 각종 툴에 테마 설정을 이것저것 찾아 보던 중에 발견한 <strong><a href="http://ethanschoonover.com/solarized">Solarized</a></strong>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/altercation/solarized.git
+</span><span class='line'>tree solarized/iterm2-colors-solarized 
+</span><span class='line'>solarized/iterm2-colors-solarized
+</span><span class='line'>├── README.md
+</span><span class='line'>├── Solarized\ Dark.itermcolors
+</span><span class='line'>└── Solarized\ Light.itermcolors</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong><a href="git%20clone%20git://github.com/altercation/solarized.git">github</a></strong>저장소에서 <code>Solarized</code>테마를 다운로드 받고 <strong>iTerm2 > Preferences > Profiles > Colors > Load Presets&#8230; > Import&#8230;</strong> 에서 위에서 클론 받아온 파일을 임포트 해주면 끝.</p>
+
+<p>개인적으로는 바탕화면이 어두운걸 선호해서 <code>Solarized Dark.itermcolors</code>를 임포트해서 사용중이다.
+레포지토리에 보면 기타 다른 툴에서도 같은 테마를 적용할 수 있게 임포트 파일들이 준비 되어 있다. 아쉽게도 <a href="http://www.eclipse.org">Eclipse</a>는 빠졌는데 (intelliJ는 있는데&#8230;) <a href="http://eclipsecolorthemes.org">Eclipse Color Theme</a>에서 <a href="http://eclipsecolorthemes.org/?list=all&amp;q=solarized">검색</a>해보면 괜찮은 자료가 많이 올라와 있다.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hello Gradle!]]></title>
