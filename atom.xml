@@ -4,7 +4,7 @@
   <title><![CDATA[Kekedie's Blog]]></title>
   <link href="http://kekedie.github.com/atom.xml" rel="self"/>
   <link href="http://kekedie.github.com/"/>
-  <updated>2013-02-20T01:56:11+09:00</updated>
+  <updated>2013-02-20T01:57:26+09:00</updated>
   <id>http://kekedie.github.com/</id>
   <author>
     <name><![CDATA[Han Sangwon]]></name>
@@ -118,7 +118,7 @@
 </span><span class='line'>    <span class="n">tomcat</span><span class="o">.</span><span class="na">enableNaming</span><span class="o">();</span> <span class="c1">// use tomcat naming service.</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="n">String</span> <span class="n">docBase</span> <span class="o">=</span> <span class="s">&quot;src/main/webapp&quot;</span>
-</span><span class='line'>    <span class="n">Context</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">tomcat</span><span class="o">.</span><span class="na">addWebapp</span><span class="o">(</span><span class="s">&quot;/test&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">docBase</span><span class="o">).</span><span class="na">getAbsolutePath</span><span class="o">());</span>
+</span><span class='line'>    <span class="n">Context</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">tomcat</span><span class="o">.</span><span class="na">addWebapp</span><span class="o">(</span><span class="s">&quot;/sample-test&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">docBase</span><span class="o">).</span><span class="na">getAbsolutePath</span><span class="o">());</span>
 </span><span class='line'>    <span class="n">File</span> <span class="n">configFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">docBase</span> <span class="o">+</span> <span class="s">&quot;/META-INF/context.xml&quot;</span><span class="o">);</span>
 </span><span class='line'>    <span class="n">ctx</span><span class="o">.</span><span class="na">setConfigFile</span><span class="o">(</span><span class="n">configFile</span><span class="o">.</span><span class="na">toURI</span><span class="o">().</span><span class="na">toURL</span><span class="o">());</span>
 </span><span class='line'>

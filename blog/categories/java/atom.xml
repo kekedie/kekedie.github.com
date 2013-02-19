@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Kekedie's Blog]]></title>
   <link href="http://kekedie.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://kekedie.github.com/"/>
-  <updated>2013-02-20T01:56:11+09:00</updated>
+  <updated>2013-02-20T01:57:26+09:00</updated>
   <id>http://kekedie.github.com/</id>
   <author>
     <name><![CDATA[Han Sangwon]]></name>
@@ -67,7 +67,7 @@ tomcat.setPort(8080);
 tomcat.enableNaming(); // use tomcat naming service.
 
 String docBase = "src/main/webapp"
-Context ctx = tomcat.addWebapp("/test", new File(docBase).getAbsolutePath());
+Context ctx = tomcat.addWebapp("/sample-test", new File(docBase).getAbsolutePath());
 File configFile = new File(docBase + "/META-INF/context.xml");
 ctx.setConfigFile(configFile.toURI().toURL());
 
