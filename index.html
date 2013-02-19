@@ -9,14 +9,7 @@
   <meta name="author" content="Han Sangwon">
 
   
-  <meta name="description" content="보기 좋은 떡이 먹기도 좋다고 요즘 각종 툴에 테마 설정을 이것저것 찾아 보던 중에 발견한 Solarized. 1
-2
-3
-4
-5
-6
-git clone git://github.com/altercation/solarized.git
-tree solarized/iterm2- &hellip;">
+  <meta name="description" content="예전에 wordpress블로그에 포스트한 내용 그대로 옮길려다가 pom.xml부분을 build.gradle로 바꿔 보았다. Embedded Tomcat을 사용하려면 일단은 gradle에 디펜던시 부터 추가하고 tomcat-dbcp는 필수는 아니지만 웹 어플리케이션에서 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +64,162 @@ tree solarized/iterm2- &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/20/embedded-tomcat-7/">Embedded Tomcat 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-20T00:36:00+09:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>예전에 wordpress블로그에 포스트한 내용 그대로 옮길려다가 <code>pom.xml</code>부분을 <code>build.gradle</code>로 바꿔 보았다.</p>
+
+<p>Embedded Tomcat을 사용하려면 일단은 <code>gradle</code>에 디펜던시 부터 추가하고 <code>tomcat-dbcp</code>는 필수는 아니지만 웹 어플리케이션에서 <code>DataSource</code>를 <code>Context.xml</code>에 추가해서 <code>lookup</code>할 경우 필요하다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">dependencies</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// build.gradle</span>
+</span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat.embed:tomcat-embed-core:7.0.34&#39;</span><span class="o">)</span>
+</span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.34&#39;</span><span class="o">)</span>
+</span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat.embed:tomcat-embed-jasper:7.0.34&#39;</span><span class="o">)</span>
+</span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat.embed:tomcat-embed-logging-log4j:7.0.34&#39;</span><span class="o">)</span>
+</span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat:tomcat-dbcp:7.0.34&#39;</span><span class="o">)</span> <span class="c1">// optional</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이클립스 플러그인은 필수.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;eclipse-wtp&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>사용방법은 <code>addWebapp</code>를 이용해서 웹 어플리케이션을 추가하는 방법과 <code>addContext</code>를 이용해서 서블릿, 필터, 리소스 등을 프로그래밍으로 추가하는 방법이 있다.
+<code>addWebapp</code>를 이용한 테스트 코드는 대략 다음과 같다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * project structure.</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * sample-test</span>
+</span><span class='line'><span class="cm"> * ├── build</span>
+</span><span class='line'><span class="cm"> * │   └── embedded-tomcat</span>
+</span><span class='line'><span class="cm"> * └── src</span>
+</span><span class='line'><span class="cm"> *     └── main</span>
+</span><span class='line'><span class="cm"> *         └── webapp</span>
+</span><span class='line'><span class="cm"> *             ├── META-INF</span>
+</span><span class='line'><span class="cm"> *             └── WEB-INF</span>
+</span><span class='line'><span class="cm"> *                 └── web.xml</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">Tomcat</span> <span class="n">tomcat</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Before</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUpEmbeddedTomcat</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">tomcat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tomcat</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">tomcat</span><span class="o">.</span><span class="na">setBaseDir</span><span class="o">(</span><span class="s">&quot;build/embedded-tomcat&quot;</span><span class="o">);</span> <span class="c1">// gradle build directory.</span>
+</span><span class='line'>    <span class="n">tomcat</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">8080</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">tomcat</span><span class="o">.</span><span class="na">enableNaming</span><span class="o">();</span> <span class="c1">// use tomcat naming service.</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">String</span> <span class="n">docBase</span> <span class="o">=</span> <span class="s">&quot;src/main/webapp&quot;</span>
+</span><span class='line'>    <span class="n">Context</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">tomcat</span><span class="o">.</span><span class="na">addWebapp</span><span class="o">(</span><span class="s">&quot;/test&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">docBase</span><span class="o">).</span><span class="na">getAbsolutePath</span><span class="o">());</span>
+</span><span class='line'>    <span class="n">File</span> <span class="n">configFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">docBase</span> <span class="o">+</span> <span class="s">&quot;/META-INF/context.xml&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">ctx</span><span class="o">.</span><span class="na">setConfigFile</span><span class="o">(</span><span class="n">configFile</span><span class="o">.</span><span class="na">toURI</span><span class="o">().</span><span class="na">toURL</span><span class="o">());</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">tomcat</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Test</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testWebService</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// some test code.</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@After</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">tearDownEmbeddedTomcat</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">tomcat</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">tomcat</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>테스트 도중에 tomcat을 리로드 하고 싶은 경우에는 <code>ctx.reload()</code>를 호출해주면 된다. (tomcat인스턴스 하나에 복수 웹 컨텍스트를 등록한 경우는 각 컨텍스트 인스턴스에 reload를 호출해야 됨. 위에 코드에서는 Context를 지역변수로 선언해서 test case메소드에서는 당연히 참조가 안된다.)</p>
+
+<p>현재 프로젝트에서는 JUnit4에 TestRule을 확장해서 사용중이다.
+아쉽게도 <code>servlet-api 3.0</code> 스펙인 <code>annotation</code>을 사용하는 경우는 작동하지 않는다. 이래저래 구글 검색을 해봐도 답이 없는거 같고.
+대충 코딩한다고 치면 <code>base package</code>를 받아서 서블릿, 필터, 리스너 등을 확장한 클래스에 선언된 <code>annotation</code>을 파싱해서 <code>addContext</code>를 이용해서 프로그래밍으로 추가하면 될 것 같긴하다.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -198,6 +347,10 @@ tree solarized/iterm2- &hellip;">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/20/embedded-tomcat-7/">Embedded Tomcat 7</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/02/10/iterm2-solarized/">iTerm2 Solarized 테마설정</a>

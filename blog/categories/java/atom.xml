@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Java | Kekedie's Blog]]></title>
+  <link href="http://kekedie.github.com/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://kekedie.github.com/"/>
+  <updated>2013-02-20T01:40:14+09:00</updated>
+  <id>http://kekedie.github.com/</id>
+  <author>
+    <name><![CDATA[Han Sangwon]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Embedded Tomcat 7]]></title>
+    <link href="http://kekedie.github.com/blog/2013/02/20/embedded-tomcat-7/"/>
+    <updated>2013-02-20T00:36:00+09:00</updated>
+    <id>http://kekedie.github.com/blog/2013/02/20/embedded-tomcat-7</id>
+    <content type="html"><![CDATA[<p>예전에 wordpress블로그에 포스트한 내용 그대로 옮길려다가 <code>pom.xml</code>부분을 <code>build.gradle</code>로 바꿔 보았다.</p>
+
+<p>Embedded Tomcat을 사용하려면 일단은 <code>gradle</code>에 디펜던시 부터 추가하고 <code>tomcat-dbcp</code>는 필수는 아니지만 웹 어플리케이션에서 <code>DataSource</code>를 <code>Context.xml</code>에 추가해서 <code>lookup</code>할 경우 필요하다.
+``` groovy
+dependencies {</p>
+
+<pre><code>// build.gradle
+testCompile('org.apache.tomcat.embed:tomcat-embed-core:7.0.34')
+testCompile('org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.34')
+testCompile('org.apache.tomcat.embed:tomcat-embed-jasper:7.0.34')
+testCompile('org.apache.tomcat.embed:tomcat-embed-logging-log4j:7.0.34')
+testCompile('org.apache.tomcat:tomcat-dbcp:7.0.34') // optional
+</code></pre>
+
+<p>}
+<code>
+이클립스 플러그인은 필수.
+</code> groovy
+apply plugin: 'eclipse-wtp'
+<code>
+사용방법은 `addWebapp`를 이용해서 웹 어플리케이션을 추가하는 방법과 `addContext`를 이용해서 서블릿, 필터, 리소스 등을 프로그래밍으로 추가하는 방법이 있다.
+`addWebapp`를 이용한 테스트 코드는 대략 다음과 같다.
+</code> java
+/<em>*
+ * project structure.
+ *
+ * sample-test
+ * ├── build
+ * │   └── embedded-tomcat
+ * └── src
+ *     └── main
+ *         └── webapp
+ *             ├── META-INF
+ *             └── WEB-INF
+ *                 └── web.xml
+ </em>/
+private Tomcat tomcat;</p>
+
+<p>@Before
+public void setUpEmbeddedTomcat() {</p>
+
+<pre><code>tomcat = new Tomcat();
+tomcat.setBaseDir("build/embedded-tomcat"); // gradle build directory.
+tomcat.setPort(8080);
+tomcat.enableNaming(); // use tomcat naming service.
+
+String docBase = "src/main/webapp"
+Context ctx = tomcat.addWebapp("/test", new File(docBase).getAbsolutePath());
+File configFile = new File(docBase + "/META-INF/context.xml");
+ctx.setConfigFile(configFile.toURI().toURL());
+
+tomcat.start();
+</code></pre>
+
+<p>}</p>
+
+<p>@Test
+public void testWebService() {</p>
+
+<pre><code>// some test code.
+</code></pre>
+
+<p>}</p>
+
+<p>@After
+public void tearDownEmbeddedTomcat() {</p>
+
+<pre><code>tomcat.stop();
+tomcat.destroy();
+</code></pre>
+
+<p>}
+<code>``
+테스트 도중에 tomcat을 리로드 하고 싶은 경우에는</code>ctx.reload()`를 호출해주면 된다. (tomcat인스턴스 하나에 복수 웹 컨텍스트를 등록한 경우는 각 컨텍스트 인스턴스에 reload를 호출해야 됨. 위에 코드에서는 Context를 지역변수로 선언해서 test case메소드에서는 당연히 참조가 안된다.)</p>
+
+<p>현재 프로젝트에서는 JUnit4에 TestRule을 확장해서 사용중이다.
+아쉽게도 <code>servlet-api 3.0</code> 스펙인 <code>annotation</code>을 사용하는 경우는 작동하지 않는다. 이래저래 구글 검색을 해봐도 답이 없는거 같고.
+대충 코딩한다고 치면 <code>base package</code>를 받아서 서블릿, 필터, 리스너 등을 확장한 클래스에 선언된 <code>annotation</code>을 파싱해서 <code>addContext</code>를 이용해서 프로그래밍으로 추가하면 될 것 같긴하다.</p>
+]]></content>
+  </entry>
+  
+</feed>
