@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | Kekedie's Blog]]></title>
   <link href="http://kekedie.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://kekedie.github.com/"/>
-  <updated>2013-02-20T01:40:14+09:00</updated>
+  <updated>2013-02-20T01:49:25+09:00</updated>
   <id>http://kekedie.github.com/</id>
   <author>
     <name><![CDATA[Han Sangwon]]></name>
@@ -22,10 +22,10 @@
 
 <p>Embedded Tomcat을 사용하려면 일단은 <code>gradle</code>에 디펜던시 부터 추가하고 <code>tomcat-dbcp</code>는 필수는 아니지만 웹 어플리케이션에서 <code>DataSource</code>를 <code>Context.xml</code>에 추가해서 <code>lookup</code>할 경우 필요하다.
 ``` groovy
+// build.gradle
 dependencies {</p>
 
-<pre><code>// build.gradle
-testCompile('org.apache.tomcat.embed:tomcat-embed-core:7.0.34')
+<pre><code>testCompile('org.apache.tomcat.embed:tomcat-embed-core:7.0.34')
 testCompile('org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.34')
 testCompile('org.apache.tomcat.embed:tomcat-embed-jasper:7.0.34')
 testCompile('org.apache.tomcat.embed:tomcat-embed-logging-log4j:7.0.34')
@@ -36,6 +36,7 @@ testCompile('org.apache.tomcat:tomcat-dbcp:7.0.34') // optional
 <code>
 이클립스 플러그인은 필수.
 </code> groovy
+// build.gradle
 apply plugin: 'eclipse-wtp'
 <code>
 사용방법은 `addWebapp`를 이용해서 웹 어플리케이션을 추가하는 방법과 `addContext`를 이용해서 서블릿, 필터, 리소스 등을 프로그래밍으로 추가하는 방법이 있다.

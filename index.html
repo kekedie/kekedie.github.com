@@ -105,8 +105,8 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">dependencies</span> <span class="o">{</span>
-</span><span class='line'>    <span class="c1">// build.gradle</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// build.gradle</span>
+</span><span class='line'><span class="n">dependencies</span> <span class="o">{</span>
 </span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat.embed:tomcat-embed-core:7.0.34&#39;</span><span class="o">)</span>
 </span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.34&#39;</span><span class="o">)</span>
 </span><span class='line'>    <span class="n">testCompile</span><span class="o">(</span><span class="s1">&#39;org.apache.tomcat.embed:tomcat-embed-jasper:7.0.34&#39;</span><span class="o">)</span>
@@ -119,7 +119,9 @@
 <p>이클립스 플러그인은 필수.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;eclipse-wtp&#39;</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// build.gradle</span>
+</span><span class='line'><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;eclipse-wtp&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
