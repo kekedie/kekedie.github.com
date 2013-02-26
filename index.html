@@ -112,14 +112,14 @@ cat /etc/shells 디폴트 쉘을 변경하려면 chsh명령어를 실행하고 �
 
 
 <p>디폴트 쉘을 변경하려면 <code>chsh</code>명령어를 실행하고 터미널을 재기동 해주면 된다. <br/>
-예를 들어 zsh쉘을 사용하려면</p>
+예를 들어 <code>zsh</code> 쉘을 기본 쉘로 사용하려면</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>chsh -s /bin/zsh
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Mountain Lion (10.8.2) 기준으로 기본 설치되어 있는 zsh의 버전은 <code>4.3.11</code>이다.</p>
+<p>Mountain Lion (10.8.2) 기준으로 기본 설치되어 있는 <code>zsh</code>의 버전은 <code>4.3.11</code>이다.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -130,7 +130,7 @@ cat /etc/shells 디폴트 쉘을 변경하려면 chsh명령어를 실행하고 �
 
 <h3>zsh 설치하기</h3>
 
-<p>상위 버전의 zsh 을 이용하려면 <a href="http://mxcl.github.com/homebrew/">homebrew</a>를 이용해서 간편하게 설치를 할 수 있다. (homebrew 설치는 홈페이지 참고)</p>
+<p>상위 버전의 <code>zsh</code> 을 이용하려면 <a href="http://mxcl.github.com/homebrew/">homebrew</a>를 이용해서 간편하게 설치를 할 수 있다. (homebrew 설치는 홈페이지 참고)</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -143,7 +143,7 @@ cat /etc/shells 디폴트 쉘을 변경하려면 chsh명령어를 실행하고 �
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>설치 후에는 <code>/usr/local/bin/zsh</code> 로 사용가능하고 <code>chsh</code>명령어로 디폴트 쉘을 brew 로 설치한 zsh로 변경할 수 있다.
+<p>설치 후에는 <code>/usr/local/bin/zsh</code> 로 사용가능하고 <code>chsh</code>명령어로 디폴트 쉘을 brew 로 설치한 <code>zsh</code>로 변경할 수 있다.
 <code>chsh</code>을 사용하기 위해서는 우선 <code>/etc/shells</code>에 <code>/usr/local/bin/zsh</code>을 추가하고 <code>chsh -s</code> 를 해주면 된다.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
