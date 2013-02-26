@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: zsh | Kekedie's Blog]]></title>
+  <link href="http://kekedie.github.com/blog/categories/zsh/atom.xml" rel="self"/>
+  <link href="http://kekedie.github.com/"/>
+  <updated>2013-02-27T00:11:42+09:00</updated>
+  <id>http://kekedie.github.com/</id>
+  <author>
+    <name><![CDATA[Han Sangwon]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[zsh 사용하기]]></title>
+    <link href="http://kekedie.github.com/blog/2013/02/26/using-zsh/"/>
+    <updated>2013-02-26T22:56:00+09:00</updated>
+    <id>http://kekedie.github.com/blog/2013/02/26/using-zsh</id>
+    <content type="html"><![CDATA[<p>맥에는 <code>bash</code>말고도 몇개에 쉘이 기본으로 설치 되어 있다.<br/>
+현재 사용중인 쉘을 확인하려면
+<code>sh
+echo $SHELL
+</code>
+맥에 설치된 쉘의 종류를 확인하려면
+<code>sh
+cat /etc/shells
+</code>
+디폴트 쉘을 변경하려면 <code>chsh</code>명령어를 실행하고 터미널을 재기동 해주면 된다. <br/>
+예를 들어 zsh쉘을 사용하려면
+<code>sh
+chsh -s /bin/zsh
+</code>
+Mountain Lion (10.8.2) 기준으로 기본 설치되어 있는 zsh의 버전은 <code>4.3.11</code>이다.
+<code>sh
+/bin/zsh --version
+zsh 4.3.11 (i386-apple-darwin12.0)
+</code></p>
+
+<h3>zsh 설치하기</h3>
+
+<p>상위 버전의 zsh 을 이용하려면 <a href="http://mxcl.github.com/homebrew/">homebrew</a>를 이용해서 간편하게 설치를 할 수 있다. (homebrew 설치는 홈페이지 참고)
+``` sh</p>
+
+<h1>설치가능한 zsh 버전 확인하기.</h1>
+
+<p>brew info zsh</p>
+
+<h1>zsh 설치.</h1>
+
+<p>brew install zsh
+<code>
+설치 후에는 `/usr/local/bin/zsh` 로 사용가능하고 `chsh`명령어로 디폴트 쉘을 brew 로 설치한 zsh로 변경할 수 있다.
+`chsh`을 사용하기 위해서는 우선 `/etc/shells`에 `/usr/local/bin/zsh`을 추가하고 `chsh -s` 를 해주면 된다.
+</code> sh</p>
+
+<h1>/usr/local/bin/zsh 를 파일 맨 마지막에 추가.</h1>
+
+<p>vim /etc/shells</p>
+
+<p>cat /etc/shells</p>
+
+<h1>List of acceptable shells for chpass(1).</h1>
+
+<h1>Ftpd will not allow users to connect who are not using</h1>
+
+<h1>one of these shells.</h1>
+
+<p>/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+/usr/local/bin/zsh</p>
+
+<h1>쉘 변경.</h1>
+
+<p>chsh -s /usr/local/bin/zsh
+<code>
+쉘 변경 후에는 터미널을 재기동하고 버전을 확인하면 끝!
+</code> sh
+which zsh
+/usr/local/bin/zsh</p>
+
+<p>zsh --version
+zsh 5.0.2 (x86_64-apple-darwin12.2.0)
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
