@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gradle | Kekedie's Blog]]></title>
+  <link href="http://kekedie.github.com/blog/categories/gradle/atom.xml" rel="self"/>
+  <link href="http://kekedie.github.com/"/>
+  <updated>2013-02-27T20:41:44+09:00</updated>
+  <id>http://kekedie.github.com/</id>
+  <author>
+    <name><![CDATA[Han Sangwon]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hello Gradle!]]></title>
+    <link href="http://kekedie.github.com/blog/2013/02/07/hello-gradle/"/>
+    <updated>2013-02-07T00:15:00+09:00</updated>
+    <id>http://kekedie.github.com/blog/2013/02/07/hello-gradle</id>
+    <content type="html"><![CDATA[<p>최근 프로젝트에서 사용중이였던 <strong>Maven</strong>을 <strong>Gradle</strong>로 이전하고 있는 중이다.
+<a href="http://www.gradle.org">Gradle사이트</a>에서 제공하고 있는 <a href="http://www.gradle.org/docs/current/userguide/userguide.html">Gradle User Guide</a>를 보면서 테스트 중인데 <strong>Maven</strong>에서 프로젝트 의존성 문제로 골머리를 썪혔던 부분이 <code>settings.gradle</code>에 서브프로젝트 설정 한줄로 단번에 해결!
+<code>groovy
+// 하위 디렉토리는 ':' 로 구분.
+include "서브프로젝트1", "서브프로젝트2", "서브프로젝트3"
+</code>
+<strong>Gradle</strong>에서 <code>multi-project build</code> 설정은 정말 쉽다.
+물론 각 서브프로젝트들도 <code>build.gradle</code>이 필요하지만 <strong>Maven</strong>에서 <code>xml</code>로 기술하던거랑은 비교할 수도 없이 간단하다.
+<code>groovy
+// 서브프로젝트1에서 서브프로젝트2와 의존관계가 있을 경우.
+// ':'는 루트 프로젝트 디렉토리 인듯.
+compile project(':서브프로젝트2')
+</code>
+서브프로젝트를 테스트 하거나 빌드를 할때도 루트프로젝트를 지정하지 않아도 알아서 <code>settings.gradle</code>을 찾아서 의존관계를 해결해 준다.</p>
+
+<p>한마디로 빌드계에 <strong>강남스타일</strong>이라 할 수 있겠다 :)</p>
+]]></content>
+  </entry>
+  
+</feed>

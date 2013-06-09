@@ -1,0 +1,65 @@
+---
+layout: post
+title: "zsh 사용하기"
+date: 2013-02-26 22:56
+comments: true
+categories: zsh
+---
+맥에는 `bash`말고도 몇개에 쉘이 기본으로 설치 되어 있다.  
+현재 사용중인 쉘을 확인하려면
+``` sh
+echo $SHELL
+```
+맥에 설치된 쉘의 종류를 확인하려면
+``` sh
+cat /etc/shells
+```
+디폴트 쉘을 변경하려면 `chsh`명령어를 실행하고 터미널을 재기동 해주면 된다.   
+예를 들어 `zsh` 쉘을 기본 쉘로 사용하려면
+``` sh
+chsh -s /bin/zsh
+```
+Mountain Lion (10.8.2) 기준으로 기본 설치되어 있는 `zsh`의 버전은 `4.3.11`이다. 
+``` sh
+/bin/zsh --version
+zsh 4.3.11 (i386-apple-darwin12.0)
+```
+### zsh 설치하기
+상위 버전의 `zsh` 을 이용하려면 [homebrew](http://mxcl.github.com/homebrew/)를 이용해서 간편하게 설치를 할 수 있다. (homebrew 설치는 홈페이지 참고)
+``` sh
+# 설치가능한 zsh 버전 확인하기.
+brew info zsh
+# zsh 설치.
+brew install zsh
+```
+설치 후에는 `/usr/local/bin/zsh` 로 사용가능하고 `chsh`명령어로 디폴트 쉘을 brew 로 설치한 `zsh`로 변경할 수 있다.
+`chsh`을 사용하기 위해서는 우선 `/etc/shells`에 `/usr/local/bin/zsh`을 추가하고 `chsh -s` 를 해주면 된다.
+``` sh
+# /usr/local/bin/zsh 를 파일 맨 마지막에 추가.
+vim /etc/shells
+
+cat /etc/shells
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
+
+/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+/usr/local/bin/zsh
+
+# 쉘 변경.
+chsh -s /usr/local/bin/zsh
+```
+쉘 변경 후에는 터미널을 재기동하고 버전을 확인하면 끝!
+``` sh
+which zsh
+/usr/local/bin/zsh
+
+zsh --version
+zsh 5.0.2 (x86_64-apple-darwin12.2.0)
+```
+

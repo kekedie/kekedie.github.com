@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hello Gradle! - Kekedie's Blog</title>
+  <meta name="author" content="Han Sangwon">
+
+  
+  <meta name="description" content="최근 프로젝트에서 사용중이였던 Maven을 Gradle로 이전하고 있는 중이다.
+Gradle사이트에서 제공하고 있는 Gradle User Guide를 보면서 테스트 중인데 Maven에서 프로젝트 의존성 문제로 골머리를 썪혔던 부분이 settings.gradle에 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kekedie.github.com/blog/2013/02/07/hello-gradle/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Kekedie's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kekedie's Blog</a></h1>
+  
+    <h2>Lately</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kekedie.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hello Gradle!</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-07T00:15:00+09:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>최근 프로젝트에서 사용중이였던 <strong>Maven</strong>을 <strong>Gradle</strong>로 이전하고 있는 중이다.
+<a href="http://www.gradle.org">Gradle사이트</a>에서 제공하고 있는 <a href="http://www.gradle.org/docs/current/userguide/userguide.html">Gradle User Guide</a>를 보면서 테스트 중인데 <strong>Maven</strong>에서 프로젝트 의존성 문제로 골머리를 썪혔던 부분이 <code>settings.gradle</code>에 서브프로젝트 설정 한줄로 단번에 해결!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// 하위 디렉토리는 &#39;:&#39; 로 구분.</span>
+</span><span class='line'><span class="n">include</span> <span class="s2">&quot;서브프로젝트1&quot;</span><span class="o">,</span> <span class="s2">&quot;서브프로젝트2&quot;</span><span class="o">,</span> <span class="s2">&quot;서브프로젝트3&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Gradle</strong>에서 <code>multi-project build</code> 설정은 정말 쉽다.
+물론 각 서브프로젝트들도 <code>build.gradle</code>이 필요하지만 <strong>Maven</strong>에서 <code>xml</code>로 기술하던거랑은 비교할 수도 없이 간단하다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="c1">// 서브프로젝트1에서 서브프로젝트2와 의존관계가 있을 경우.</span>
+</span><span class='line'><span class="c1">// &#39;:&#39;는 루트 프로젝트 디렉토리 인듯.</span>
+</span><span class='line'><span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:서브프로젝트2&#39;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>서브프로젝트를 테스트 하거나 빌드를 할때도 루트프로젝트를 지정하지 않아도 알아서 <code>settings.gradle</code>을 찾아서 의존관계를 해결해 준다.</p>
+
+<p>한마디로 빌드계에 <strong>강남스타일</strong>이라 할 수 있겠다 :)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Han Sangwon</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-07T00:15:00+09:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gradle/'>Gradle</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kekedie.github.com/blog/2013/02/07/hello-gradle/" data-via="" data-counturl="http://kekedie.github.com/blog/2013/02/07/hello-gradle/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/02/10/iterm2-solarized/" title="Next Post: iTerm2 Solarized 테마설정">iTerm2 Solarized 테마설정 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/26/using-zsh/">zsh 사용하기</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/20/embedded-tomcat-7/">Embedded Tomcat 7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/10/iterm2-solarized/">iTerm2 Solarized 테마설정</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/07/hello-gradle/">Hello Gradle!</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Han Sangwon -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kekedie';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kekedie.github.com/blog/2013/02/07/hello-gradle/';
+        var disqus_url = 'http://kekedie.github.com/blog/2013/02/07/hello-gradle/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
